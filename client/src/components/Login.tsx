@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import SoftBackdrop from "./SoftBackdrop"
+import { motion } from "framer-motion"
 
 const Login = () => {
 
@@ -23,7 +24,13 @@ const Login = () => {
 
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center">
+      <motion.div
+        className="min-h-screen flex items-center justify-center"
+        initial={{ y: 50, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.2, type: "spring", stiffness: 320, damping: 70, mass: 1 }}
+      >
         <form
           onSubmit={handleSubmit}
           className="w-full sm:w-87.5 text-center bg-white/6 border border-white/10 rounded-2xl px-8">
@@ -65,7 +72,7 @@ const Login = () => {
             <span className="text-pink-400 hover:underline ml-1">click here</span>
           </p>
         </form>
-      </div>
+      </motion.div>
 
       <SoftBackdrop />
     </>
