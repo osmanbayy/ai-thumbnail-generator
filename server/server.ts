@@ -1,6 +1,9 @@
 import express, { Request, Response } from 'express';
 import "dotenv/config";
 import cors from "cors";
+import connectToDatabase from './config/database.js';
+
+await connectToDatabase();
 
 const app = express();
 
