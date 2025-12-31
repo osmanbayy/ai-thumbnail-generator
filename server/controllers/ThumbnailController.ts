@@ -114,3 +114,17 @@ export const generateThumbnail = async (request: Request, response: Response) =>
     response.status(500).json({ message: "Internal Server Error." });
   }
 }
+
+export const deleteThumbnail = async (request: Request, response: Response) => {
+  try {
+    const { id } = request.params;
+    const { userId } = request.session;
+
+    await Thumbnail.findOneAndDelete({ _id: id, userId });
+
+    response.json({ message: "Thumbnail deleted successfully." });
+  } catch (error) {
+    console.error("Error in generate thumbnail controller: ", error);
+    response.status(500).json({ message: "Internal Server Error." });
+  }
+}
