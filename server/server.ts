@@ -4,6 +4,7 @@ import cors from "cors";
 import connectToDatabase from './config/database.js';
 import session from "express-session"
 import MongoStore from "connect-mongo"
+import AuthRoutes from './routes/AuthRoutes.js';
 
 declare module 'express-session' {
   interface SessionData {
@@ -36,6 +37,8 @@ app.use(session({
 app.get('/', (req: Request, res: Response) => {
   res.send('Server is Live!');
 });
+
+app.use("/api/auth", AuthRoutes);
 
 const port = process.env.PORT || 3000;
 
